@@ -39,8 +39,6 @@ quinone_transfer_learning/
 3. **Fine-tune and evaluate**  
    Run `train_final.ipynb`: it loads the pretrained checkpoint from `saved_models/modelHomo.model`, builds train/val/test loaders from the processed graphs, fine-tunes with the chosen config, and writes metrics and plots to `results/`.
 
-**Note:** The pretrained file `saved_models/modelHomo.model` is not included in this repo; you must provide it (same architecture as in `models/GRNNModel.py`, trained for HOMO prediction on a larger dataset).
-
 ## Data Pipeline
 
 - **Graph_Data.py:** Converts SMILES to PyTorch Geometric graphs via RDKit; caches them under `data/<savepath>/processed/` as `train_data_set.pt` and `test_data_set.pt`. Molecules with no bonds are skipped and listed in `incorrect_smiles.csv`.
@@ -54,12 +52,12 @@ quinone_transfer_learning/
 
 ## Dependencies
 
-- Python 3 (tested with a typical PyTorch/PyG environment)
-- PyTorch, PyTorch Geometric (`torch_geometric`)
+- Python 3 
+- PyTorch, PyTorch Geometric 
 - RDKit
 - pandas, scikit-learn, numpy
-- Optuna (for tuning notebook)
-- matplotlib (for plotting in `train_final.ipynb`)
+- Optuna
+- matplotlib
 
 Install with conda/pip as needed for PyTorch, PyG, and RDKit in your environment.
 
@@ -73,7 +71,3 @@ After running `train_final.ipynb`, results are saved in `results/`:
 - `scatter_*.png` — scatter plots of true vs predicted values
 
 With only 30 quinone samples and a small test set, the model can fit the training data very well while test metrics may be unstable; consider collecting more quinone data or using cross-validation for more reliable estimates.
-
-## License
-
-See the repository or project policy for license information.
